@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.main.rendimiento.Cajas_Activity">
+
+    <TextView
+        android:id="@+id/labelPalet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:autoText="true"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="Palet"
+        android:textColor="@color/editTextColorWhite"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="Empacadora:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelPalet" />
+
+    <EditText
+        android:id="@+id/codEmp"
+        android:layout_width="208dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/labelPalet" />
+
+    <Button
+        android:id="@+id/bGuardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Guardar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalCajas" />
+
+    <Button
+        android:id="@+id/bLimpiar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:text="Limpiar"
+        app:layout_constraintStart_toEndOf="@+id/bGuardar"
+        app:layout_constraintTop_toBottomOf="@+id/totalCajas" />
+
+    <Button
+        android:id="@+id/bSalir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:text="Salir"
+        app:layout_constraintStart_toEndOf="@+id/bLimpiar"
+        app:layout_constraintTop_toBottomOf="@+id/totalCajas" />
+
+    <ListView
+        android:id="@+id/listEmp"
+        android:layout_width="290dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="206dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bc1" />
+
+    <Button
+        android:id="@+id/bc1"
+        android:layout_width="57dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="C1"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/codEmp" />
+
+    <Button
+        android:id="@+id/bc2"
+        android:layout_width="57dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="C2"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toEndOf="@+id/bc1"
+        app:layout_constraintTop_toBottomOf="@+id/codEmp" />
+
+    <Button
+        android:id="@+id/bc3"
+        android:layout_width="57dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="C3"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toEndOf="@+id/bc2"
+        app:layout_constraintTop_toBottomOf="@+id/codEmp" />
+
+    <Button
+        android:id="@+id/bc4"
+        android:layout_width="57dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="C4"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toEndOf="@+id/bc3"
+        app:layout_constraintTop_toBottomOf="@+id/codEmp" />
+
+    <TextView
+        android:id="@+id/Gcontador"
+        android:layout_width="match_parent"
+        android:layout_height="196dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:padding="0dp"
+        android:paddingBottom="0dp"
+        android:paddingEnd="0dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:paddingStart="0dp"
+        android:paddingTop="0dp"
+        android:text="0"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="178sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bc2" />
+
+    <TextView
+        android:id="@+id/tn1"
+        android:layout_width="57dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bc1" />
+
+    <TextView
+        android:id="@+id/tn2"
+        android:layout_width="57dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="0"
+        app:layout_constraintStart_toEndOf="@+id/tn1"
+        app:layout_constraintTop_toBottomOf="@+id/bc2" />
+
+    <TextView
+        android:id="@+id/tn3"
+        android:layout_width="57dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="0"
+        app:layout_constraintStart_toEndOf="@+id/tn2"
+        app:layout_constraintTop_toBottomOf="@+id/bc3" />
+
+    <TextView
+        android:id="@+id/tn4"
+        android:layout_width="57dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="0"
+        app:layout_constraintStart_toEndOf="@+id/tn3"
+        app:layout_constraintTop_toBottomOf="@+id/bc4" />
+
+    <TextView
+        android:id="@+id/totalCajas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Total capturadas: "
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Gcontador" />
+
+</android.support.constraint.ConstraintLayout>

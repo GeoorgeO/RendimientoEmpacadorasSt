@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">rendimiento</string>
+
+    //Agregados tutorial
+    <string name="title_activity_referencia">ReferenciaActivity</string>
+    <string name="hint_username">Nombre de Usuario</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="text_button_login">Login</string>
+    <string name="dont_have_account">¿No Tienes Cuenta?, </string>
+    <string name="create_here">Crea una Aqui</string>
+    <string name="hint_numpallet">Ingresa Num. Pallet</string>
+    <string name="hint_name">Nombre</string>
+    <string name="hint_usuario">Usuario</string>
+    <string name="hint_confimr_password">Confirmar Contraseña</string>
+    <string name="text_button_pallet">Ingresar</string>
+    <string name="toolbar_tittle_pallet">Ingresa Num. Pallet</string>
+    <string name="username_card">Uriel Ramirez</string>
+    <string name="firstword_card">Hace</string>
+    <string name="timecard_card">4 Dias</string>
+    <string name="likenumberCard_card">10 Me Gusta</string>
+    <string name="tab_search">Buscar</string>
+    <string name="tab_home">Inicio</string>
+    <string name="tab_profile">Yo</string>
+
+
+</resources>
