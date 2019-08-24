@@ -46,7 +46,7 @@ public class Cajas_Activity extends AppCompatActivity {
     Vector<String> vCara3 = new Vector<String>();
     Vector<String> vCara4 = new Vector<String>();
 
-    String c_codigo_env,c_codigo_prc;
+    String c_codigo_env,c_codigo_prc,c_codigo_tem,edita;
 
     ArrayList listado1 = new ArrayList();
 
@@ -70,8 +70,7 @@ public class Cajas_Activity extends AppCompatActivity {
         usuario=getIntent().getExtras().getString("ParUsuario");
         c_codigo_env=getIntent().getExtras().getString("Parenv");
         c_codigo_prc=getIntent().getExtras().getString("Parprc");
-
-
+        edita=getIntent().getExtras().getString("Paredita");
 
         bc1=(Button) findViewById(R.id.bc1);
         bc2=(Button) findViewById(R.id.bc2);
@@ -96,6 +95,22 @@ public class Cajas_Activity extends AppCompatActivity {
         bc2.setBackgroundColor(Color.DKGRAY);
         bc3.setBackgroundColor(Color.DKGRAY);
         bc4.setBackgroundColor(Color.DKGRAY);
+
+        codEmp.requestFocus();
+
+        try{
+            Statement st=conexionBD().createStatement();
+            ResultSet rs=st.executeQuery("select c_codigo_tem from nra.dbo.t_temporada where c_activo_tem='1'");
+            while (rs.next()){
+                c_codigo_tem=rs.getString("c_codigo_tem");
+            }
+        }catch (Exception e){
+            Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+        if (edita.equals("1")){
+            CargaDatosEstiba();
+        }
 
         codEmp.addTextChangedListener(new TextWatcher() {
 
@@ -282,10 +297,7 @@ public class Cajas_Activity extends AppCompatActivity {
                 }
             });
             dialogo1.show();
-
-
             //contaCajas=0;
-
         }
 
         public void confirmar (){
@@ -317,31 +329,35 @@ public class Cajas_Activity extends AppCompatActivity {
             int i;
             String cadena;
 
-
             cadena="";
+
+            if (edita.equals("1")){
+                cadena=cadena+"delete from RendimientoEmpaque.dbo.rendimiento where c_codigo_tem='"+c_codigo_tem+"' and c_codigo_pal='"+labelPalet.getText().toString().trim()+"' ";
+                cadena=cadena+"delete from RendimientoEmpaque.dbo.Rendimiento_Palet where c_codigo_tem='"+c_codigo_tem+"' and c_codigo_pal='"+labelPalet.getText().toString().trim()+"' ";
+            }
 
             if (vCara1.size()>0){
                 for(i=0;i<vCara1.size();i++ ){
-                    cadena=cadena+ "insert into RendimientoEmpaque.dbo.rendimiento values ('"+labelPalet.getText().toString().trim()+"','08','"+vCara1.get(i).toString().trim()+"','"+usuario.toString().trim()+"',getdate()) ";
+                    cadena=cadena+ "insert into RendimientoEmpaque.dbo.rendimiento values ('"+labelPalet.getText().toString().trim()+"','"+c_codigo_tem+"','"+vCara1.get(i).toString().trim()+"','"+usuario.toString().trim()+"',getdate()) ";
                 }
             }
             if (vCara2.size()>0){
                 for(i=0;i<vCara2.size();i++ ){
-                    cadena=cadena+ "insert into RendimientoEmpaque.dbo.rendimiento values ('"+labelPalet.getText().toString().trim()+"','08','"+vCara2.get(i).toString().trim()+"','"+usuario.toString().trim()+"',getdate()) ";
+                    cadena=cadena+ "insert into RendimientoEmpaque.dbo.rendimiento values ('"+labelPalet.getText().toString().trim()+"','"+c_codigo_tem+"','"+vCara2.get(i).toString().trim()+"','"+usuario.toString().trim()+"',getdate()) ";
                 }
             }
             if (vCara3.size()>0){
                 for(i=0;i<vCara3.size();i++ ){
-                    cadena=cadena+ "insert into RendimientoEmpaque.dbo.rendimiento values ('"+labelPalet.getText().toString().trim()+"','08','"+vCara3.get(i).toString().trim()+"','"+usuario.toString().trim()+"',getdate()) ";
+                    cadena=cadena+ "insert into RendimientoEmpaque.dbo.rendimiento values ('"+labelPalet.getText().toString().trim()+"','"+c_codigo_tem+"','"+vCara3.get(i).toString().trim()+"','"+usuario.toString().trim()+"',getdate()) ";
                 }
             }
             if (vCara4.size()>0){
                 for(i=0;i<vCara4.size();i++ ){
-                    cadena=cadena+ "insert into RendimientoEmpaque.dbo.rendimiento values ('"+labelPalet.getText().toString().trim()+"','08','"+vCara4.get(i).toString().trim()+"','"+usuario.toString().trim()+"',getdate()) ";
+                    cadena=cadena+ "insert into RendimientoEmpaque.dbo.rendimiento values ('"+labelPalet.getText().toString().trim()+"','"+c_codigo_tem+"','"+vCara4.get(i).toString().trim()+"','"+usuario.toString().trim()+"',getdate()) ";
                 }
             }
             if (c_codigo_env!=null) {
-                cadena = cadena + "insert into RendimientoEmpaque.dbo.Rendimiento_Palet values ('08','" + labelPalet.getText().toString().trim() + "','" + c_codigo_env.toString().trim() + "','" + c_codigo_prc.toString().trim() + "') ";
+                cadena = cadena + "insert into RendimientoEmpaque.dbo.Rendimiento_Palet values ('"+c_codigo_tem+"','" + labelPalet.getText().toString().trim() + "','" + c_codigo_env.toString().trim() + "','" + c_codigo_prc.toString().trim() + "') ";
             }
             if (InsertaBD(cadena)==true){
                 cerrarCajas();
@@ -356,7 +372,6 @@ public class Cajas_Activity extends AppCompatActivity {
                 if (InsertaBD(cadena)==true){
                     cerrarCajas();
                 }
-
             }*/
         }
 
@@ -400,4 +415,22 @@ public class Cajas_Activity extends AppCompatActivity {
 
         }
     }
+
+    private void CargaDatosEstiba(){
+        try{
+            Statement st=conexionBD().createStatement();
+            ResultSet rs=st.executeQuery("select c_codigo_emp from RendimientoEmpaque.dbo.rendimiento where c_codigo_pal='"+labelPalet.getText().toString().trim()+"' and c_codigo_tem='"+c_codigo_tem.trim()+"'");
+            while (rs.next()){
+                vCara1.add(rs.getString("c_codigo_emp").trim());
+                tn1=vCara1.size();
+                ttn1.setText(Integer.toString(tn1));
+                Gcontador.setText(Integer.toString(vCara1.size()));
+            }
+            contaCajas=vCara1.size()+vCara2.size()+vCara3.size()+vCara4.size();
+            totalCajas.setText("Total capturadas: "+Integer.toString(contaCajas));
+        }catch (Exception e){
+            Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }

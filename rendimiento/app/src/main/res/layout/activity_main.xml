@@ -103,6 +103,13 @@
                     android:text="@string/text_button_login"
                     android:theme="@style/RaiseButtonDark" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+
+                    android:text="V 190823.02" />
+
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
